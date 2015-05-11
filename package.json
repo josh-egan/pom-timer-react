@@ -1,0 +1,32 @@
+{
+  "name": "pom-timer-react",
+  "version": "1.0.0",
+  "description": "A pomodoro timer written using react.js",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josh-egan/pom-timer-react"
+  },
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "tomato"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josh-egan/pom-timer-react/issues"
+  },
+  "homepage": "https://github.com/josh-egan/pom-timer-react",
+  "devDependencies": {
+    "browser-sync": "^2.7.1",
+    "gulp-jade": "^1.0.0",
+    "gulp-sass": "^2.0.0"
+  }
+}
