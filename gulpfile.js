@@ -8,8 +8,8 @@ var jade = require('gulp-jade');
 var paths = {
     js: 'src/js/**/*.js',
     jade: 'src/**/*.jade',
-    sass: 'src/styles/sass/**/*.sass',
-    cssOutput: './dist/styles/css',
+    sass: 'src/style/**/*.sass',
+    cssOutput: './dist/style/',
     htmlOutput: './dist/'
 };
 
