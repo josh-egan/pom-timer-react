@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var watch = require('gulp-watch');
 var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 var jade = require('gulp-jade');
@@ -15,12 +16,25 @@ var paths = {
 
 gulp.task('default', ['watch']);
 
-gulp.task('build', ['compile-sass', 'compile-jade']);
+gulp.task('watch', ['dev-server'], function () {
 
-gulp.task('watch', ['build', 'dev-server'], function () {
-    gulp.watch(paths.js, [browserSync.reload]).on('change', reportChange);
-    gulp.watch(paths.jade, ['compile-jade', browserSync.reload]).on('change', reportChange);
-    gulp.watch(paths.sass, ['compile-sass', browserSync.reload]).on('change', reportChange);
+    // Errors that occur while parsing jade are currently not handled and will kill the watch. :(
+    // The last attempt derailed browser sync.
+    gulp.src(paths.jade)
+        .pipe(watch(paths.jade, {verbose: true}))
+        .pipe(jade())
+        .pipe(gulp.dest(paths.htmlOutput))
+        .pipe(browserSync.reload({stream: true}));
+
+    gulp.src(paths.sass)
+        .pipe(watch(paths.sass, {verbose: true}))
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(gulp.dest(paths.cssOutput))
+        .pipe(browserSync.reload({stream: true}));
+
+    gulp.src(paths.js)
+        .pipe(watch(paths.js, {verbose: true}))
+        .pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('dev-server', function (done) {
@@ -37,30 +51,3 @@ gulp.task('dev-server', function (done) {
         }
     }, done);
 });
-
-gulp.task('compile-jade', function () {
-    var data = {};
-
-    gulp.src(paths.jade)
-        .pipe(jade({
-            locals: data
-        }))
-        .pipe(gulp.dest(paths.htmlOutput))
-});
-
-gulp.task('compile-sass', function () {
-    gulp.src(paths.sass)
-        .pipe(sass({
-            style: 'compressed',
-            errLogToConsole: false,
-            onError: function (err) {
-                return console.log(err);
-            }
-        }))
-        .pipe(gulp.dest(paths.cssOutput));
-})
-
-function reportChange(event) {
-    console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-}
-
