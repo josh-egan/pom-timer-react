@@ -7,11 +7,12 @@ var sass = require('gulp-sass');
 var jade = require('gulp-jade');
 
 var paths = {
-    js: 'src/js/**/*.js',
+    js: 'src/scripts/**/*.js',
     jade: 'src/**/*.jade',
     sass: 'src/style/**/*.sass',
     cssOutput: './dist/style/',
-    htmlOutput: './dist/'
+    htmlOutput: './dist/',
+    jsOutput: './dist/scripts/'
 };
 
 gulp.task('default', ['watch']);
@@ -34,6 +35,7 @@ gulp.task('watch', ['dev-server'], function () {
 
     gulp.src(paths.js)
         .pipe(watch(paths.js, {verbose: true}))
+        .pipe(gulp.dest(paths.jsOutput))
         .pipe(browserSync.reload({stream: true}));
 });
 

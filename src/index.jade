@@ -1,6 +1,18 @@
 html(lang="en")
     head
         link(rel='stylesheet', href='/style/main.css')
+
+        script(src='/scripts/app.js')
+
         title Test Title
     body
-        h1 Hello world!
+        div.controls
+            div.pomodoro-buttons
+                a(onclick="app.startPomodoro()") Start Pomodoro
+                a(onclick="app.startShortBreak()") Short Break
+                a(onclick="app.startLongBreak()") Long Break
+
+        div.timer
+            | Timer
+        div.history
+            | History

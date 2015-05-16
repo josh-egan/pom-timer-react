@@ -1,7 +1,41 @@
-h1
-  font-size: 75px
-  color: blue
-  margin: auto
+@mixin clearfix
+  &:after
+    content: ''
+    display: table
+    clear: both
+
+html
+  box-sizing: border-box
+
+*, *:before, *:after
+  box-sizing: inherit
+
+body
+  margin: 0
+  box-sizing: border-box
+
+.controls
+  background: pink
+
+.pomodoro-buttons
+  @include clearfix()
+
+  margin-left: auto
+  margin-right: auto
+  width: 800px
+  background: #ffff00
+
+  a
+    float: left
+    margin: 10px 5px
+    padding: 100px 50px
+    background: lightblue
+
+.timer
+  background: blue
+
+.history
+  background: green
 
 
 
