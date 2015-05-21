@@ -1,20 +1,18 @@
 (function(){
-    "use strict";
+  "use strict";
 
-    var app = {};
+  var qs = document.querySelector.bind(document);
+  
+  qs('.start-pomodoro').addEventListener('click', function(){
+    alert("pomodoro started!");
+  });
 
-    app.startPomodoro = function(){
-        alert("pomodoro started!");
-    };
+  qs('.start-short-break').addEventListener('click', function(){
+    alert("short break started!");
+  });
 
-    app.startShortBreak = function(){
-        alert("short break");
-    };
+  qs('.start-long-break').addEventListener('click', function(){
+    alert("long break started!");
+  });
 
-    app.startLongBreak = function(){
-        alert("long break");
-    };
-
-    window.app = app;
 })();
-

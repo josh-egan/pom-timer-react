@@ -1,18 +1,19 @@
 html(lang="en")
-    head
-        link(rel='stylesheet', href='/style/main.css')
+  head
+    link(rel='stylesheet', href='/style/third-party.css')
+    link(rel='stylesheet', href='/style/main.css')
 
-        script(src='/scripts/app.js')
+    title Test Title
+  body
+    div.controls
+      div.pomodoro-buttons
+        a.pomodoro-button.start-pomodoro Start Pomodoro
+        a.pomodoro-button.start-short-break Short Break
+        a.pomodoro-button.start-long-break Long Break      
 
-        title Test Title
-    body
-        div.controls
-            div.pomodoro-buttons
-                a(onclick="app.startPomodoro()") Start Pomodoro
-                a(onclick="app.startShortBreak()") Short Break
-                a(onclick="app.startLongBreak()") Long Break
+    div.timer
+      | Timer
+    div.history
+      | History
 
-        div.timer
-            | Timer
-        div.history
-            | History
+    script(src='/scripts/app.js')

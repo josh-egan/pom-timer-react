@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var watch = require('gulp-watch');
+var concat = require('gulp-concat');
 var browserSync = require('browser-sync');
 var sass = require('gulp-sass');
 var jade = require('gulp-jade');
@@ -10,6 +11,7 @@ var paths = {
     js: 'src/scripts/**/*.js',
     jade: 'src/**/*.jade',
     sass: 'src/style/**/*.sass',
+    thirdPartyCssFiles: ['node_modules/normalize.css/*.css'],
     cssOutput: './dist/style/',
     htmlOutput: './dist/',
     jsOutput: './dist/scripts/'
@@ -17,7 +19,7 @@ var paths = {
 
 gulp.task('default', ['watch']);
 
-gulp.task('watch', ['dev-server'], function () {
+gulp.task('watch', ['build', 'dev-server'], function () {
 
     // Errors that occur while parsing jade are currently not handled and will kill the watch. :(
     // The last attempt derailed browser sync.
@@ -37,6 +39,12 @@ gulp.task('watch', ['dev-server'], function () {
         .pipe(watch(paths.js, {verbose: true}))
         .pipe(gulp.dest(paths.jsOutput))
         .pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('build', function(){
+  gulp.src(paths.thirdPartyCssFiles)
+    .pipe(concat('third-party.css'))
+    .pipe(gulp.dest(paths.cssOutput))
 });
 
 gulp.task('dev-server', function (done) {
