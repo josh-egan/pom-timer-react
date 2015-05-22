@@ -1,12 +1,15 @@
 html(lang="en")
   head
-    link(rel='stylesheet', href='/style/third-party.css')
-    link(rel='stylesheet', href='/style/main.css')
+    
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Economica:700')
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Wire+One')
+    link(rel='stylesheet', type='text/css', href='/style/third-party.css')
+    link(rel='stylesheet', type='text/css', href='/style/main.css')
 
     title Test Title
   body
-    div.controls
-      div.pomodoro-buttons
+    .controls
+      .pomodoro-controls.center-horizontally
         a.pomodoro-button.start-pomodoro Start Pomodoro
         a.pomodoro-button.start-short-break Short Break
         a.pomodoro-button.start-long-break Long Break      

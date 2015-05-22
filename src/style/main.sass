@@ -4,31 +4,67 @@
     display: table
     clear: both
 
+@mixin centerHorizontally
+  margin-left: auto
+  margin-right: auto
+
+@mixin transition($t)
+  -webkit-transition: $t
+  -moz-transition: $t
+  -o-transition: $t
+  transition: $t
+
+$tablet: 530px
+
+$dark: #222
+$darkGray: #555
+$gray: #777
+$light: #DDD
+$buttonHoverColor: #006078
+
+$pomodoroButtonWidth: 160px
+$pomodoroButtonHorizontalMargin: 5px
+
 html
   box-sizing: border-box
 
 *, *:before, *:after
   box-sizing: inherit
 
-body
-  margin: 0
+html
+  font: 400 32px 'Wire One', Arial, sans-serif
+
+.center-horizontally
+  @include centerHorizontally()
 
 .controls
-  background: pink
+  background: $darkGray
+  padding: 4px
 
-.pomodoro-buttons
-  @include clearfix()
-
-  margin-left: auto
-  margin-right: auto
-  width: 800px
-  background: #ffff00
+.pomodoro-controls
+  max-width: $pomodoroButtonHorizontalMargin*6 + $pomodoroButtonWidth*3
+  // background: #ffff00
 
 .pomodoro-button
-  float: left
-  margin: 10px 5px
-  padding: 100px 50px
-  background: lightblue
+  @include transition(background 0.5s ease-out)
+  font: 700 20px 'Economica', Arial, sans-serif
+  display: block
+  margin: 10px
+  padding: 8px
+  width: auto
+  text-align: center
+  cursor: hand
+  background: $dark
+  color: $light
+  border-radius: 3px
+
+  @media screen and (min-width: $tablet)
+    display: inline-block
+    width: $pomodoroButtonWidth
+    margin: 10px $pomodoroButtonHorizontalMargin
+
+.pomodoro-button:hover
+  background: $buttonHoverColor
 
 .timer
   background: blue
