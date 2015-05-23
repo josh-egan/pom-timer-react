@@ -77,9 +77,7 @@ gulp.task('dev-server', function (done) {
   browserSync({
     open: false,
     port: 9000,
-    notify: {
-      styles: ['opacity: 0', 'position: absolute'] // Hide notifications
-    },
+    notify: false,
     server: {
       baseDir: ['./dist/'],
       middleware: function (req, res, next) {
